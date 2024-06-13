@@ -1,66 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mantenedor de Vehículos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto tiene como objetivo desarrollar un sistema básico de mantención de vehículos, utilizando Laravel 10 para el backend y Vue.js para el frontend.
 
-## About Laravel
+## Características Implementada
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **CRUD de Vehículos y Usuarios:**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    - Gestión completa (Crear, Leer, Actualizar, Eliminar) de vehículos y usuarios.
+    - Relación donde un usuario puede ser dueño de uno o más vehículos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **Cambiar Dueño de Vehículo:**
 
-## Learning Laravel
+    - Permite cambiar el dueño de un vehículo durante la edición del mismo.
+    - Mantiene un historial de los dueños anteriores de cada vehículo.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Carga desde Archivo Excel:**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    - Permite cargar usuarios y vehículos desde un archivo Excel con un formato específico.
+    - Validaciones incluidas para evitar duplicados y asociaciones incorrectas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Notificaciones por Correo:**
 
-## Laravel Sponsors
+    - Al completar la carga desde Excel, se envía un correo informando sobre el resultado (éxito o errores).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Seguridad y Validaciones:**
 
-### Premium Partners
+    - Validación para asegurar que los vehículos no se dupliquen por patente.
+    - Asociación correcta de vehículos y usuarios existentes.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. **Pruebas Unitarias:**
 
-## Contributing
+    - Incluye al menos una prueba unitaria utilizando PHPUnit para verificar la funcionalidad clave del sistema.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Opcionales:**
+    - Implementación de soft deleting para la función DELETE.
+    - Utilización de Docker Compose para la configuración de la base de datos.
 
-## Code of Conduct
+### Configuración del Proyecto
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Requisitos Previos
 
-## Security Vulnerabilities
+-   PHP >= 7.3
+-   Composer
+-   Node.js y npm (para el frontend)
+-   Docker y Docker Compose (para la base de datos)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Pasos para Ejecutar
 
-## License
+1. **Clonar el Repositorio:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    cd nombre_del_proyecto
+
+    ```
+
+2. **Instalar Dependencias Backend:**
+
+    ```bash
+    composer install
+
+    ```
+
+3. **Configurar el Entorno:**
+
+    ```bash
+    Copiar .env.example a .env y configurar la conexión a la base de datos y el envío de correo SMTP.
+
+    ```
+
+4. **Iniciar Docker Compose (Base de Datos):**
+
+    ```bash
+    docker-compose up -d
+
+    ```
+
+5. **Generar Clave de Aplicación:**
+
+    ```bash
+    php artisan key:generate
+
+    ```
+
+6. **Migrar y Sembrar la Base de Datos:**
+
+    ```bash
+    php artisan migrate
+
+    ```
+
+7. **Ejecutar Pruebas Unitarias**
+
+    ```bash
+    php artisan test
+
+    ```
+
+8. **Ejecutar Pruebas Unitarias**
+
+    ```bash
+    php artisan serve
+
+    ```
+
+9. **Accede al sistema**
+    ```bash
+    Abrir el navegador y visitar http://localhost:8000
+
+
+
+    ```
