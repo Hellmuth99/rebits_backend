@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - 5435:5432
+    expose:
+      - "5435"
+    environment:
+      POSTGRES_PASSWORD: MySecr3tPassWord@as2
+      POSTGRES_DB: RebitsDB
+      POSTGRES_USER: postgres
+    container_name: rebbitsdb
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
